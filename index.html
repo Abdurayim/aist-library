@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore free books and audiobooks from Uzbek and international libraries, curated for Ahmad International School in Tashkent.">
+  <title>AIST Library</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA/1BMVEUUR7YAAAAoVrs5ZML6+/0GPLJNdMhEbMWMpdu0xOcRSrnK1e6nuuR4ldVqis8RScHa4vTm6/cAVaqCndicsuAUSboTSLfBzuxdgc8yXsATSLgiTa1PYZEVSLgSSMgAf/+1j1GJemgWSr1gaIRNXIYfULr6riSMkaMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABO7b6cAAAAQHRSTlP+AP7/////////Gv////////8D//+sNP///1D//98OAv//if//////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZVfPJwAAAZ9JREFUeNp9k9la5jAIhhPIapIudvsXdXRmdO7/DgeSdPNROWkKbz8IUCHFTyalOAFwxSt8C6CxyGYN8uvTJwCKu6BWtPe39gAAfV65+vj7+vH2dF8BjU7oEmkyoUXz7xXum0LC5EEfajXuIv4cUqB3sWtwVYEQrC7JKmBcXFTvOpfjOqmGUQt7kU1ceuWdchzQYcxSYFfAMNEpFYOniDaqXsVUgEnq4aJC6KiMixprLQgFwNwhDVSF8iaoVUAAVqA4NIVHRcZ5hLEnIGcRQ994ArDKs3cDTMlC+iqarR94rIGBQanOBdWnM1D0tRZDWJoYPd3Ylltc9z4IaMbOj1YEFvHloua9AtxTs6joA3kv3DEHeWRrJ8FocNE5j7nSnioN51lYGuQl1dJoVop6Bvlm67BQDGnYNip5752B00664HHfKJOGhKetBjOgPu0k7Gv/LLbZbStn6/mZgaldvQaBjX6MGm8nBubDsqK19qAkZgbkTbRf/petuEkGHuU8HZw7PM0UY4VfUr48FLtN7TTX80uOMCAfCaz28Hs/F/d/tXUP/hO2VeIAAAAASUVORK5CYII=">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("aist-library-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch {
+      // The page can still use the device's color scheme.
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#catalog" data-copy="skip">Skip to libraries</a>
+  <header class="site-header" id="top">
+    <div class="shell header-content">
+      <a class="brand" href="#top">
+        <span class="school-mark" aria-hidden="true"></span>
+        <span><strong>AIST Library</strong><small data-copy="school">Ahmad International School in Tashkent</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Library categories" data-label="navigation">
+        <a href="#uzbek" data-copy="uzbek">Uzbek libraries</a>
+        <a href="#foreign" data-copy="foreign">Foreign libraries</a>
+      </nav>
+      <div class="header-controls">
+        <div class="language-control">
+          <span class="icon" data-icon="globe" aria-hidden="true"></span>
+          <select id="language" aria-label="Website language">
+            <option value="en" lang="en">English</option>
+            <option value="uz" lang="uz">O‘zbekcha</option>
+            <option value="ru" lang="ru">Русский</option>
+          </select>
+          <span class="icon language-chevron" data-icon="chevron" aria-hidden="true"></span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" hidden>
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow"><span class="icon" data-icon="book" aria-hidden="true"></span><span data-copy="readingRoom">The digital reading room</span></p>
+          <h1 id="hero-title"><span data-copy="headline">A world of books</span> <em data-copy="headlineAccent">within reach.</em></h1>
+          <p class="hero-description" data-copy="intro">Explore free ebooks and audiobooks from Uzbekistan and around the world.</p>
+          <a class="hero-button" href="#catalog"><span data-copy="browse">Explore the libraries</span><span class="icon" data-icon="down" aria-hidden="true"></span></a>
+        </div>
+      </section>
+
+      <div class="catalog" id="catalog" tabindex="-1">
+        <div class="catalog-toolbar">
+          <h2 data-copy="catalog">Library directory</h2>
+          <div class="search-box" role="search">
+            <span class="icon" data-icon="search" aria-hidden="true"></span>
+            <input id="library-search" type="search" aria-label="Search libraries" placeholder="Search libraries…" autocomplete="off">
+          </div>
+        </div>
+        <p id="search-status" class="visually-hidden" role="status"></p>
+        <p id="empty-state" class="empty-state" data-copy="empty" hidden>No libraries match your search.</p>
+        <section id="uzbek" class="collection" aria-labelledby="uzbek-title">
+          <div class="collection-heading">
+            <span class="collection-icon icon" data-icon="landmark" aria-hidden="true"></span>
+            <div>
+              <h3 id="uzbek-title" data-copy="uzbek">Uzbek libraries</h3>
+              <p data-copy="uzbekDescription">Literature, audiobooks, and learning resources from Uzbekistan.</p>
+            </div>
+          </div>
+          <div class="card-grid" id="uzbek-cards"></div>
+        </section>
+        <section id="foreign" class="collection" aria-labelledby="foreign-title">
+          <div class="collection-heading">
+            <span class="collection-icon icon" data-icon="globe" aria-hidden="true"></span>
+            <div>
+              <h3 id="foreign-title" data-copy="foreign">Foreign libraries</h3>
+              <p data-copy="foreignDescription">Open collections of books and audiobooks from around the world.</p>
+            </div>
+          </div>
+          <div class="card-grid" id="foreign-cards"></div>
+        </section>
+        <noscript><p class="empty-state">Enable JavaScript to browse the library directory and switch languages.</p></noscript>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-content">
+      <a class="brand" href="#top">
+        <span class="school-mark" aria-hidden="true"></span>
+        <span><strong>AIST Library</strong><small data-copy="school">Ahmad International School in Tashkent</small></span>
+      </a>
+      <a class="back-to-top" href="#top"><span data-copy="top">Back to top</span><span class="icon" data-icon="up" aria-hidden="true"></span></a>
+    </div>
+  </footer>
+
+  <template id="library-card">
+    <article class="library-card">
+      <div class="card-photo">
+        <span class="format-badge"><span class="icon"></span><span class="format-label"></span></span>
+      </div>
+      <div class="card-body">
+        <h4></h4>
+        <p class="card-description"></p>
+        <p class="access"><span class="icon"></span><span class="access-label"></span></p>
+        <a class="visit-link" target="_blank" rel="noopener noreferrer"><span class="visit-label"></span><span class="icon" data-icon="external" aria-hidden="true"></span></a>
+      </div>
+    </article>
+  </template>
+</body>
+</html>
