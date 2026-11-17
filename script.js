@@ -7,10 +7,17 @@ const translations = {
     darkTheme: "Switch to dark mode",
     skip: "Skip to libraries",
     readingRoom: "The digital reading room",
-    headline: "A world of books",
-    headlineAccent: "within reach.",
-    intro: "Explore free ebooks and audiobooks from Uzbekistan and around the world.",
+    headline: "AIST Library",
+    headlineAccent: "Books within reach.",
+    intro: "The digital library of Ahmad International School in Tashkent. Explore free ebooks, audiobooks, and study resources from Uzbekistan and around the world.",
+    searchDescription: "AIST Library (AIST kutubxonasi) is the digital library of Ahmad International School in Tashkent. Find free ebooks, audiobooks, and study resources.",
     browse: "Explore the libraries",
+    heroPhotos: "Library photos",
+    previousPhoto: "Previous photo",
+    nextPhoto: "Next photo",
+    pausePhotos: "Pause slideshow",
+    playPhotos: "Play slideshow",
+    photoPosition: (current, total) => `Photo ${current} of ${total}`,
     catalog: "Library directory",
     search: "Search libraries",
     uzbek: "Uzbek libraries",
@@ -38,10 +45,17 @@ const translations = {
     darkTheme: "Qorong‘i rejimga o‘tish",
     skip: "Kutubxonalarga o‘tish",
     readingRoom: "Raqamli o‘quv zali",
-    headline: "Kitoblar olami",
-    headlineAccent: "bir qadam narida.",
-    intro: "O‘zbekiston va jahon kutubxonalaridan bepul elektron va audiokitoblarni toping.",
+    headline: "AIST kutubxonasi",
+    headlineAccent: "Kitoblar bir qadam narida.",
+    intro: "Toshkentdagi Ahmad xalqaro maktabining raqamli kutubxonasi. O‘zbekiston va jahon kutubxonalaridan bepul elektron kitoblar, audiokitoblar va o‘quv manbalarini toping.",
+    searchDescription: "AIST kutubxonasi — Toshkentdagi Ahmad xalqaro maktabining raqamli kutubxonasi. Bepul elektron kitoblar, audiokitoblar va o‘quv manbalarini toping.",
     browse: "Kutubxonalarni ko‘rish",
+    heroPhotos: "Kutubxona suratlari",
+    previousPhoto: "Oldingi surat",
+    nextPhoto: "Keyingi surat",
+    pausePhotos: "Slayd-shouni to‘xtatib turish",
+    playPhotos: "Slayd-shouni boshlash",
+    photoPosition: (current, total) => `${total} ta suratdan ${current}-surat`,
     catalog: "Kutubxonalar katalogi",
     search: "Kutubxonalarni qidirish",
     uzbek: "O‘zbekiston kutubxonalari",
@@ -69,10 +83,17 @@ const translations = {
     darkTheme: "Включить тёмную тему",
     skip: "Перейти к библиотекам",
     readingRoom: "Цифровой читальный зал",
-    headline: "Мир книг",
-    headlineAccent: "под рукой.",
-    intro: "Бесплатные электронные книги и аудиокниги из Узбекистана и со всего мира.",
+    headline: "Библиотека AIST",
+    headlineAccent: "Книги под рукой.",
+    intro: "Цифровая библиотека Международной школы «Ахмад» в Ташкенте. Здесь вы найдёте бесплатные электронные книги, аудиокниги и учебные материалы со всего мира.",
+    searchDescription: "Библиотека AIST — цифровая библиотека Международной школы «Ахмад» в Ташкенте. Бесплатные электронные книги, аудиокниги и учебные материалы.",
     browse: "Смотреть библиотеки",
+    heroPhotos: "Фотографии библиотеки",
+    previousPhoto: "Предыдущее фото",
+    nextPhoto: "Следующее фото",
+    pausePhotos: "Приостановить слайд-шоу",
+    playPhotos: "Запустить слайд-шоу",
+    photoPosition: (current, total) => `Фото ${current} из ${total}`,
     catalog: "Каталог библиотек",
     search: "Поиск библиотек",
     uzbek: "Библиотеки Узбекистана",
@@ -310,6 +331,10 @@ const libraries = {
 };
 
 const icons = {
+  left: '<path d="m15 6-6 6 6 6"/>',
+  right: '<path d="m9 6 6 6-6 6"/>',
+  pause: '<path d="M9 5v14m6-14v14"/>',
+  play: '<path d="m8 5 11 7-11 7Z"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"/>',
   moon: '<path d="M20.8 15.2A9 9 0 0 1 8.8 3.2 9 9 0 1 0 20.8 15.2Z"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/>',
@@ -335,6 +360,7 @@ const template = document.querySelector("#library-card");
 const searchStatus = document.querySelector("#search-status");
 const emptyState = document.querySelector("#empty-state");
 const localizedText = document.querySelectorAll("[data-copy]");
+const localizedLabels = document.querySelectorAll("[data-label]");
 const sections = Object.entries(libraries).map(([id, items]) => ({
   section: document.getElementById(id),
   grid: document.getElementById(id + "-cards"),
@@ -440,12 +466,16 @@ function renderCatalog() {
 function renderLanguage() {
   const copy = translations[language];
   root.lang = language;
+  document.title = `${copy.headline} | ${copy.school}`;
+  document.querySelector('meta[name="description"]').content = copy.searchDescription;
   renderThemeToggle();
   languageControl.value = language;
   languageControl.setAttribute("aria-label", copy.language);
   searchInput.setAttribute("aria-label", copy.search);
   searchInput.placeholder = copy.search + "…";
-  document.querySelector(".main-nav").setAttribute("aria-label", copy.navigation);
+  for (const element of localizedLabels) {
+    element.setAttribute("aria-label", copy[element.dataset.label]);
+  }
 
   for (const element of localizedText) {
     element.textContent = copy[element.dataset.copy];
@@ -480,3 +510,81 @@ for (const link of document.querySelectorAll(".main-nav a")) {
 }
 
 renderLanguage();
+setupHeroCarousel();
+
+function setupHeroCarousel() {
+  const hero = document.querySelector(".hero");
+  const slides = [...hero.querySelectorAll(".hero-slide")];
+  const controls = hero.querySelector(".hero-controls");
+  const playback = controls.querySelector(".hero-playback");
+  const counter = controls.querySelector(".hero-count");
+  const status = controls.querySelector(".hero-status");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let current = 0;
+  let playing = !reducedMotion.matches;
+  let timer;
+  let touchStart;
+
+  function renderPlayback() {
+    const label = translations[language][playing ? "pausePhotos" : "playPhotos"];
+    drawIcon(playback.querySelector(".icon"), playing ? "pause" : "play");
+    playback.setAttribute("aria-label", label);
+    playback.title = label;
+  }
+
+  function scheduleRotation() {
+    clearTimeout(timer);
+    if (playing && !document.hidden) {
+      timer = setTimeout(() => showPhoto(1), 5500);
+    }
+  }
+
+  function showPhoto(step, manual = false) {
+    slides[current].classList.remove("is-current");
+    current = (current + step + slides.length) % slides.length;
+    slides[current].classList.add("is-current");
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    if (manual) {
+      playing = false;
+      renderPlayback();
+      status.textContent = translations[language].photoPosition(current + 1, slides.length);
+    }
+    scheduleRotation();
+  }
+
+  for (const button of controls.querySelectorAll("[data-slide-step]")) {
+    button.addEventListener("click", () => showPhoto(Number(button.dataset.slideStep), true));
+  }
+
+  playback.addEventListener("click", () => {
+    playing = !playing;
+    renderPlayback();
+    scheduleRotation();
+  });
+
+  hero.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "touch" || !event.isPrimary || event.target.closest("a, button")) return;
+    touchStart = event;
+  });
+  hero.addEventListener("pointerup", (event) => {
+    if (event.pointerId !== touchStart?.pointerId) return;
+    const horizontal = event.clientX - touchStart.clientX;
+    const vertical = event.clientY - touchStart.clientY;
+    touchStart = undefined;
+    if (Math.abs(horizontal) > 45 && Math.abs(horizontal) > Math.abs(vertical) * 1.5) {
+      showPhoto(horizontal < 0 ? 1 : -1, true);
+    }
+  });
+  hero.addEventListener("pointercancel", () => { touchStart = undefined; });
+  reducedMotion.addEventListener("change", (event) => {
+    playing = !event.matches;
+    renderPlayback();
+    scheduleRotation();
+  });
+  document.addEventListener("visibilitychange", scheduleRotation);
+  languageControl.addEventListener("change", renderPlayback);
+
+  controls.hidden = false;
+  renderPlayback();
+  showPhoto(0);
+}

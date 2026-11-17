@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore free books and audiobooks from Uzbek and international libraries, curated for Ahmad International School in Tashkent.">
-  <title>AIST Library</title>
+  <meta name="description" content="AIST Library (AIST kutubxonasi) is the digital library of Ahmad International School in Tashkent. Find free ebooks, audiobooks, and study resources.">
+  <title>AIST Library | Ahmad International School in Tashkent</title>
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA/1BMVEUUR7YAAAAoVrs5ZML6+/0GPLJNdMhEbMWMpdu0xOcRSrnK1e6nuuR4ldVqis8RScHa4vTm6/cAVaqCndicsuAUSboTSLfBzuxdgc8yXsATSLgiTa1PYZEVSLgSSMgAf/+1j1GJemgWSr1gaIRNXIYfULr6riSMkaMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABO7b6cAAAAQHRSTlP+AP7/////////Gv////////8D//+sNP///1D//98OAv//if//////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZVfPJwAAAZ9JREFUeNp9k9la5jAIhhPIapIudvsXdXRmdO7/DgeSdPNROWkKbz8IUCHFTyalOAFwxSt8C6CxyGYN8uvTJwCKu6BWtPe39gAAfV65+vj7+vH2dF8BjU7oEmkyoUXz7xXum0LC5EEfajXuIv4cUqB3sWtwVYEQrC7JKmBcXFTvOpfjOqmGUQt7kU1ceuWdchzQYcxSYFfAMNEpFYOniDaqXsVUgEnq4aJC6KiMixprLQgFwNwhDVSF8iaoVUAAVqA4NIVHRcZ5hLEnIGcRQ994ArDKs3cDTMlC+iqarR94rIGBQanOBdWnM1D0tRZDWJoYPd3Ylltc9z4IaMbOj1YEFvHloua9AtxTs6joA3kv3DEHeWRrJ8FocNE5j7nSnioN51lYGuQl1dJoVop6Bvlm67BQDGnYNip5752B00664HHfKJOGhKetBjOgPu0k7Gv/LLbZbStn6/mZgaldvQaBjX6MGm8nBubDsqK19qAkZgbkTbRf/petuEkGHuU8HZw7PM0UY4VfUr48FLtN7TTX80uOMCAfCaz28Hs/F/d/tXUP/hO2VeIAAAAASUVORK5CYII=">
   <script>
     try {
@@ -54,11 +54,31 @@
   <main>
     <div class="shell">
       <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photos" aria-hidden="true">
+          <div class="hero-slide is-current" data-photo="reception"></div>
+          <div class="hero-slide" data-photo="shelves"></div>
+          <div class="hero-slide" data-photo="lounge"></div>
+          <div class="hero-slide" data-photo="reading-table"></div>
+          <div class="hero-slide" data-photo="study-table"></div>
+        </div>
         <div class="hero-content">
           <p class="eyebrow"><span class="icon" data-icon="book" aria-hidden="true"></span><span data-copy="readingRoom">The digital reading room</span></p>
-          <h1 id="hero-title"><span data-copy="headline">A world of books</span> <em data-copy="headlineAccent">within reach.</em></h1>
-          <p class="hero-description" data-copy="intro">Explore free ebooks and audiobooks from Uzbekistan and around the world.</p>
+          <h1 id="hero-title"><span data-copy="headline">AIST Library</span> <em data-copy="headlineAccent">Books within reach.</em></h1>
+          <p class="hero-description" data-copy="intro">The digital library of Ahmad International School in Tashkent. Explore free ebooks, audiobooks, and study resources from Uzbekistan and around the world.</p>
           <a class="hero-button" href="#catalog"><span data-copy="browse">Explore the libraries</span><span class="icon" data-icon="down" aria-hidden="true"></span></a>
+        </div>
+        <div class="hero-controls" role="group" aria-label="Library photos" data-label="heroPhotos" hidden>
+          <button type="button" class="hero-control" data-slide-step="-1" data-label="previousPhoto" aria-label="Previous photo">
+            <span class="icon" data-icon="left" aria-hidden="true"></span>
+          </button>
+          <span class="hero-count" aria-hidden="true"></span>
+          <button type="button" class="hero-control" data-slide-step="1" data-label="nextPhoto" aria-label="Next photo">
+            <span class="icon" data-icon="right" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="hero-control hero-playback" aria-label="Pause slideshow">
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+          <span class="hero-status visually-hidden" role="status"></span>
         </div>
       </section>
 
